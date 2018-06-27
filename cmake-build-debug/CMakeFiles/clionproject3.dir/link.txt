@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/clionproject3.dir/p3.cpp.o CMakeFiles/clionproject3.dir/simulation.cpp.o  -o clionproject3 
