@@ -4,4 +4,8 @@ HHPP
 PPLL
 FFHH
 FFHH
-flytrap east 2 2 f f a a f f a a f a sdf a
+flytrap east 2 2
+flytrap east 2 1
+flytrap east 2 0
+flytrap east 1 1
+
