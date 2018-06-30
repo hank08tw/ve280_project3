@@ -6,4 +6,6 @@ CMakeFiles/ve280_project3.dir/p3.cpp.o: ../simulation.h
 CMakeFiles/ve280_project3.dir/p3.cpp.o: ../world_type.h
 
 CMakeFiles/ve280_project3.dir/simulation.cpp.o: ../simulation.cpp
+CMakeFiles/ve280_project3.dir/simulation.cpp.o: ../simulation.h
+CMakeFiles/ve280_project3.dir/simulation.cpp.o: ../world_type.h
 

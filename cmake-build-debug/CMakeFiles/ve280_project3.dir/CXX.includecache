@@ -9,14 +9,34 @@
 /Users/hank08tw/Desktop/2018夏季學期/VE280/project3/ve280_project3/p3.cpp
 iostream
 -
+fstream
+-
+sstream
+-
 world_type.h
 /Users/hank08tw/Desktop/2018夏季學期/VE280/project3/ve280_project3/world_type.h
 simulation.h
 /Users/hank08tw/Desktop/2018夏季學期/VE280/project3/ve280_project3/simulation.h
 
 /Users/hank08tw/Desktop/2018夏季學期/VE280/project3/ve280_project3/simulation.cpp
+simulation.h
+/Users/hank08tw/Desktop/2018夏季學期/VE280/project3/ve280_project3/simulation.h
+world_type.h
+/Users/hank08tw/Desktop/2018夏季學期/VE280/project3/ve280_project3/world_type.h
+iostream
+-
+string
+-
+fstream
+-
+sstream
+-
+cassert
+-
 
 /Users/hank08tw/Desktop/2018夏季學期/VE280/project3/ve280_project3/simulation.h
+world_type.h
+/Users/hank08tw/Desktop/2018夏季學期/VE280/project3/ve280_project3/world_type.h
 
 /Users/hank08tw/Desktop/2018夏季學期/VE280/project3/ve280_project3/world_type.h
 string
