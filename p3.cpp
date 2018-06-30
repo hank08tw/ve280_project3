@@ -26,6 +26,23 @@ int main(int argc,char* argv[]){
         cout << "Error: Cannot open file "<< argv[1] << "!" << endl;
         return -1;
     }
-
+    //store creature directory name
+    string directory_name;
+    getline(iFile,directory_name);
+    //store species name
+    string tmp_species_name;
+    while(getline(iFile,tmp_species_name)){
+        if(!tmp_species_name.empty()&&theworld.numSpecies!=MAXSPECIES){
+            theworld.species[theworld.numSpecies++].name=tmp_species_name;
+        }else break;
+    }
+    //check whether number of species exceeds maximal
+    getline(iFile,tmp_species_name);
+    if(!tmp_species_name.empty()){
+        cout << "Error: Too many species!" << endl;
+        cout << "Maximal number of species is " << MAXSPECIES<< "." << endl;
+        return -1;
+    }
+    iFile.close ();
 
 }
