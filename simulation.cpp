@@ -149,7 +149,7 @@ int read_world_file(world_t& theworld,const string& world_file_name){
         return -1;
     }
     theworld.grid.width=(unsigned int)width_num;
-    //read in terrain tyoe for each square
+    //read in terrain type for each square
     for(int i=0;i<height_num;i++){
         string line;
         getline(iFile2,line);
@@ -283,9 +283,10 @@ int read_world_file(world_t& theworld,const string& world_file_name){
             return -1;
         }
         theworld.creatures[theworld.numCreatures].programID=1;
-        theworld.creatures[theworld.numCreatures].hillActive=false;
+        theworld.creatures[theworld.numCreatures].hillActive=true;
+        //if the species cannot fly and it's in hill terrain, it can only move once for any two rounds.
         if(!theworld.creatures[theworld.numCreatures].ability[FLY]&&theworld.grid.terrain[r][c]==HILL){
-            theworld.creatures[theworld.numCreatures].hillActive= true;
+            theworld.creatures[theworld.numCreatures].hillActive= false;
         }
         theworld.numCreatures++;
         species_line.clear();
@@ -298,3 +299,101 @@ int read_world_file(world_t& theworld,const string& world_file_name){
     iFile2.close ();
     return 0;
 }
+void hop(world_t& theworld,int round,int creature_num){
+    if(!theworld.creatures[creature_num].hillActive){
+        theworld.creatures[creature_num].hillActive=true;
+        return;
+    }
+    creature_t& thecreature=theworld.creatures[creature_num];
+    switch(thecreature.direction){
+        case EAST:
+            if(thecreature.location.c+1<theworld.grid.width&&!(!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c+1]==LAKE)&&theworld.grid.squares[thecreature.location.r][thecreature.location.c+1]==nullptr){
+                thecreature.location.c+=1;
+                theworld.grid.squares[thecreature.location.r][thecreature.location.c+1]=&thecreature;
+                theworld.grid.squares[thecreature.location.r][thecreature.location.c]=nullptr;
+                thecreature.programID++;
+            }
+            break;
+        case SOUTH:
+            if(thecreature.location.c+1<theworld.grid.height&&!(!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r+1][thecreature.location.c]==LAKE)&&theworld.grid.squares[thecreature.location.r+1][thecreature.location.c]==nullptr){
+                thecreature.location.r+=1;
+                theworld.grid.squares[thecreature.location.r+1][thecreature.location.c]=&thecreature;
+                theworld.grid.squares[thecreature.location.r][thecreature.location.c]=nullptr;
+                thecreature.programID++;
+            }
+            break;
+        case WEST:
+            if(thecreature.location.c-1>=0&&!(!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c-1]==LAKE)&&theworld.grid.squares[thecreature.location.r][thecreature.location.c-1]==nullptr){
+                thecreature.location.c-=1;
+                theworld.grid.squares[thecreature.location.r][thecreature.location.c-1]=&thecreature;
+                theworld.grid.squares[thecreature.location.r][thecreature.location.c]=nullptr;
+                thecreature.programID++;
+            }
+            break;
+        case NORTH:
+            if(thecreature.location.r-1>=0&&!(!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r-1][thecreature.location.c]==LAKE)&&theworld.grid.squares[thecreature.location.r-1][thecreature.location.c]==nullptr){
+                thecreature.location.r-=1;
+                theworld.grid.squares[thecreature.location.r-1][thecreature.location.c]=&thecreature;
+                theworld.grid.squares[thecreature.location.r][thecreature.location.c]=nullptr;
+                thecreature.programID++;
+            }
+            break;
+    }
+    if(theworld.creatures[creature_num].hillActive&&!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c]==HILL){
+        theworld.creatures[creature_num].hillActive=false;
+    }
+}
+void turn_left(world_t& theworld,int round,int creature_num){
+    creature_t& thecreature=theworld.creatures[creature_num];
+    if(!theworld.creatures[creature_num].hillActive){
+        theworld.creatures[creature_num].hillActive=true;
+        return;
+    }
+    switch(thecreature.direction){
+        case EAST:
+            thecreature.direction=NORTH;
+            break;
+        case SOUTH:
+            thecreature.direction=EAST;
+            break;
+        case WEST:
+            thecreature.direction=SOUTH;
+            break;
+        case NORTH:
+            thecreature.direction=WEST;
+            break;
+    }
+    if(theworld.creatures[creature_num].hillActive&&!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c]==HILL){
+        theworld.creatures[creature_num].hillActive=false;
+    }
+}
+void turn_right(world_t& theworld,int round,int creature_num){
+    creature_t& thecreature=theworld.creatures[creature_num];
+    if(!theworld.creatures[creature_num].hillActive){
+        theworld.creatures[creature_num].hillActive=true;
+        return;
+    }
+    switch(thecreature.direction){
+        case EAST:
+            thecreature.direction=SOUTH;
+            break;
+        case SOUTH:
+            thecreature.direction=WEST;
+            break;
+        case WEST:
+            thecreature.direction=NORTH;
+            break;
+        case NORTH:
+            thecreature.direction=EAST;
+            break;
+    }
+    if(theworld.creatures[creature_num].hillActive&&!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c]==HILL){
+        theworld.creatures[creature_num].hillActive=false;
+    }
+}
+void infect(world_t& theworld,int round,int creature_num);
+void ifempty(world_t& theworld,int n,int round,int creature_num);
+void ifenemy(world_t& theworld,int n,int round,int creature_num);
+void ifsame(world_t& theworld,int n,int round,int creature_num);
+void ifwall(world_t& theworld,int n,int round,int creature_num);
+void go(world_t& theworld,int n,int round,int creature_num);
