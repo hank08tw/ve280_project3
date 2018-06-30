@@ -12,7 +12,6 @@ int main(int argc,char* argv[]){
         cout << "Usage: ./p3 <species-summary> <world-file> <rounds> [v|verbose]" << endl;
         return -1;
     }
-
     //check whether round supplied by user is negative ok
     if(atoi(argv[3])<0){
         cout << "Error: Number of simulation rounds is negative!" << endl;
@@ -123,6 +122,7 @@ int main(int argc,char* argv[]){
                         return -1;
                 }
             }
+            tmp_instruction.clear();
         }
         //check whether number of instructions in a species exceeds maximal value ok
         if(theworld.species[i].programSize==MAXPROGRAM&&!tmp_instruction.empty()){
@@ -131,11 +131,12 @@ int main(int argc,char* argv[]){
             return -1;
         }
     }
+    //read in height and width of the terrain
     string height,width;
     int height_num,width_num;
     ifstream iFile2;
     iFile2.open(argv[2]);
-    //check whether fail to open world file 
+    //check whether fail to open world file
     if(!iFile2){
         cout << "Error: Cannot open file "<< argv[2] << "!" << endl;
         return -1;
@@ -149,6 +150,7 @@ int main(int argc,char* argv[]){
         cout << "Error: The grid height is illegal!" << endl;
         return -1;
     }
+    theworld.grid.height=(unsigned int)height_num;
     getline(iFile2,width);
     istringstream istream2;
     istream2.str(width);
@@ -158,6 +160,131 @@ int main(int argc,char* argv[]){
         cout << "Error: The grid width is illegal!" << endl;
         return -1;
     }
+    theworld.grid.width=(unsigned int)width_num;
+    //read in terrain tyoe for each square
+    for(int i=0;i<height_num;i++){
+        string line;
+        getline(iFile2,line);
+        for(int j=0;j<line.length();j++){
+            bool invalid = true;
+            int k;
+            for(k=0;k<TERRAIN_SIZE;k++){
+                if(line[j]==terrainShortName[k][0]){
+                    invalid=false;
+                    break;
+                }
+            }
+            //check whether array describing the terrain layout is correct ok
+            if(invalid){
+                cout << "Error: Terrain square (" << line[j] << " " << i << " " << j << ") is invalid!" << endl;
+                return -1;
+            }
+            switch(k){
+                case PLAIN:
+                    theworld.grid.terrain[i][j]=PLAIN;
+                    break;
+                case LAKE:
+                    theworld.grid.terrain[i][j]=LAKE;
+                    break;
+                case FOREST:
+                    theworld.grid.terrain[i][j]=FOREST;
+                    break;
+                case HILL:
+                    theworld.grid.terrain[i][j]=HILL;
+                    break;
+                default:
+                    return -1;
+            }
+        }
+    }
+    //read in creature information
+    theworld.numCreatures=0;
+    string species_line;
+    while(getline(iFile2,species_line)){
+        if(species_line.empty()||theworld.numCreatures==MAXCREATURES){
+            break;
+        }
+        istringstream istream3;
+        istream3.str(species_line);
+        string species_name;
+        istream3 >> species_name;
+        bool invalid_creature_name=true;
+        int i;
+        for(i=0;i<theworld.numSpecies;i++){
+            if(species_name==theworld.species[i].name){
+                invalid_creature_name=false;
+                break;
+            }
+        }
+        //check whether the species exists ok
+        if(invalid_creature_name){
+            cout << "Error: Species " << species_name << " not found!" << endl;
+            return -1;
+        }
+        //theworld.creatures[theworld.numCreatures].species=&theworld.species[i];
+        string direction;
+        istream3 >> direction;
+        bool invalid_direction=true;
+        for(i=0;i<DIRECT_SIZE;i++){
+            if(direction==directName[i]){
+                invalid_direction=false;
+                break;
+            }
+        }
+        //check whether direction exists ok
+        if(invalid_direction){
+            cout << "Error: Direction " << direction << " is not recognized!" << endl;
+            return -1;
+        }
+        /*
+        switch(i){
+            case 0:
+                theworld.creatures[theworld.numCreatures].direction=EAST;
+                break;
+            case 1:
+                theworld.creatures[theworld.numCreatures].direction=SOUTH;
+                break;
+            case 2:
+                theworld.creatures[theworld.numCreatures].direction=WEST;
+                break;
+            case 3:
+                theworld.creatures[theworld.numCreatures].direction=NORTH;
+                break;
+            default:
+                return -1;
+        }
+         */
+        int r,c;
+        //istream3 >> theworld.creatures[theworld.numCreatures].location.r;
+        //istream3 >> theworld.creatures[theworld.numCreatures].location.c;
+        istream3 >> r;
+        istream3 >> c;
+        //check whether creature is out of boundary ok
+        if(r>=theworld.grid.height||c>=theworld.grid.width){
+            cout << "Error: Creature (" << species_name << " " << direction << " " << r << " " << c << ") is out of bound!" << endl;
+            cout << "The grid size is " << theworld.grid.height << "-by-" << theworld.grid.width << "." << endl;
+            return -1;
+        }
+        //theworld.grid.squares[theworld.creatures[theworld.numCreatures].location.r][theworld.creatures[theworld.numCreatures].location.c]=&theworld.creatures[theworld.numCreatures];
+        if(theworld.grid.squares[r][c]!=nullptr){
+            cout << "Error: Creature (" << species_name << " " << direction << " " << r << " " << c <<") overlaps with creature (" << theworld.grid.squares[r][c]->species->name << " " << directName[theworld.grid.squares[r][c]->direction] << " " << theworld <C>)!" << endl;
+        }
+        string ability;
+        while(!istream3.eof()){
+            istream3 >> ability;
+            //check whether there exists invalid ability
+            if(ability.length()>1||((ability[0]!='f')&&ability[0]!='a')){
+                cout << "Error: Creature (" << species_name << " " <<  direction << " " << theworld.creatures[theworld.numCreatures].location.r << " " << theworld.creatures[theworld.numCreatures].location.c << ") has an invalid ability " << ability << "!" << endl;
+                return -1;
+            }
+            if(ability[0]=='a'){
+                theworld.creatures[theworld.numCreatures].ability[ARCH]=true;
+            }else{
+                theworld.creatures[theworld.numCreatures].ability[FLY]=true;
+            }
 
+        }
+        theworld.numSpecies++;
+    }
     iFile2.close ();
 }
