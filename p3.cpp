@@ -50,10 +50,11 @@ int main(int argc,char* argv[]){
             int last_c=theworld.creatures[creature].location.c;
             bool keep=true;
             /*
-            if(round==2){
-                cout << "222" << endl;
+            if(round==24){
+                cout << "24" << endl;
             }
              */
+
             while(keep) {
                 //if(round==2){cout << theworld.creatures[creature].programID << endl;}
                 switch (int(theworld.creatures[creature].species->program[theworld.creatures[creature].programID - 1].op)) {
@@ -71,6 +72,11 @@ int main(int argc,char* argv[]){
                         keep=false;
                         break;
                     case INFECT:
+                        /*
+                        if(round==24){
+                            cout << "2424" << endl;
+                        }
+                         */
                         last_program_id=infect (theworld, creature);
                         keep=false;
                         break;
@@ -78,6 +84,11 @@ int main(int argc,char* argv[]){
                         if(ifempty (theworld, theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address, creature))keep=false;
                         break;
                     case IFENEMY:
+                        /*
+                        if(round==24){
+                            cout << "2424" << endl;
+                        }
+                         */
                         if(ifenemy (theworld, theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address, creature))keep=false;
                         break;
                     case IFSAME:
