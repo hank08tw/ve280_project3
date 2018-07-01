@@ -39,7 +39,7 @@
       <file leaf-file-name="world_type.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/world_type.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1920">
+            <state relative-caret-position="447">
               <caret line="128" column="2" lean-forward="true" selection-start-line="128" selection-start-column="2" selection-end-line="128" selection-end-column="2" />
               <folding />
             </state>
@@ -49,8 +49,8 @@
       <file leaf-file-name="p3.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/p3.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="107" lean-forward="false" selection-start-line="33" selection-start-column="107" selection-end-line="33" selection-end-column="107" />
+            <state relative-caret-position="209">
+              <caret line="32" column="70" lean-forward="true" selection-start-line="32" selection-start-column="70" selection-end-line="32" selection-end-column="70" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -61,11 +61,20 @@
       <file leaf-file-name="simulation.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simulation.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="393" column="39" lean-forward="true" selection-start-line="393" selection-start-column="39" selection-end-line="393" selection-end-column="39" />
+            <state relative-caret-position="165">
+              <caret line="690" column="1" lean-forward="true" selection-start-line="690" selection-start-column="1" selection-end-line="690" selection-end-column="1" />
               <folding>
                 <element signature="e#143#4704#0" expanded="false" />
                 <element signature="e#4705#12013#0" expanded="false" />
+                <element signature="e#12014#14915#0" expanded="false" />
+                <element signature="e#14916#15868#0" expanded="false" />
+                <element signature="e#15869#16851#0" expanded="false" />
+                <element signature="e#16852#29307#0" expanded="false" />
+                <element signature="e#29308#30759#0" expanded="false" />
+                <element signature="e#30760#32949#0" expanded="false" />
+                <element signature="e#32950#35138#0" expanded="false" />
+                <element signature="e#35139#36832#0" expanded="false" />
+                <element signature="e#36833#37105#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -74,8 +83,8 @@
       <file leaf-file-name="simulation.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulation.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="59" lean-forward="false" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
+            <state relative-caret-position="210">
+              <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -125,8 +134,8 @@
         <option value="$PROJECT_DIR$/creatures/flytrap" />
         <option value="$PROJECT_DIR$/world" />
         <option value="$PROJECT_DIR$/world_type.h" />
-        <option value="$PROJECT_DIR$/simulation.h" />
         <option value="$PROJECT_DIR$/p3.cpp" />
+        <option value="$PROJECT_DIR$/simulation.h" />
         <option value="$PROJECT_DIR$/simulation.cpp" />
       </list>
     </option>
@@ -222,12 +231,12 @@
       <workItem from="1530063976679" duration="1770000" />
       <workItem from="1530091946085" duration="3990000" />
       <workItem from="1530166067983" duration="126000" />
-      <workItem from="1530167184370" duration="31467000" />
+      <workItem from="1530167184370" duration="42519000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74906000" />
+    <option name="totallyTimeSpent" value="85958000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -283,7 +292,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -305,6 +314,15 @@
           <folding>
             <element signature="e#143#4704#0" expanded="false" />
             <element signature="e#4705#12013#0" expanded="false" />
+            <element signature="e#12014#14915#0" expanded="false" />
+            <element signature="e#14916#15868#0" expanded="false" />
+            <element signature="e#15869#16851#0" expanded="false" />
+            <element signature="e#16852#29307#0" expanded="false" />
+            <element signature="e#29308#30759#0" expanded="false" />
+            <element signature="e#30760#32949#0" expanded="false" />
+            <element signature="e#32950#35138#0" expanded="false" />
+            <element signature="e#35139#36832#0" expanded="false" />
+            <element signature="e#36833#37105#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -374,6 +392,15 @@
           <folding>
             <element signature="e#143#4704#0" expanded="false" />
             <element signature="e#4705#12013#0" expanded="false" />
+            <element signature="e#12014#14915#0" expanded="false" />
+            <element signature="e#14916#15868#0" expanded="false" />
+            <element signature="e#15869#16851#0" expanded="false" />
+            <element signature="e#16852#29307#0" expanded="false" />
+            <element signature="e#29308#30759#0" expanded="false" />
+            <element signature="e#30760#32949#0" expanded="false" />
+            <element signature="e#32950#35138#0" expanded="false" />
+            <element signature="e#35139#36832#0" expanded="false" />
+            <element signature="e#36833#37105#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -622,14 +649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/species_summary">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/world">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -646,39 +665,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulation.h">
+    <entry file="file://$PROJECT_DIR$/world_type.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="59" lean-forward="false" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
+        <state relative-caret-position="447">
+          <caret line="128" column="2" lean-forward="true" selection-start-line="128" selection-start-column="2" selection-end-line="128" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/world_type.h">
+    <entry file="file://$PROJECT_DIR$/species_summary">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1920">
-          <caret line="128" column="2" lean-forward="true" selection-start-line="128" selection-start-column="2" selection-end-line="128" selection-end-column="2" />
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/p3.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="107" lean-forward="false" selection-start-line="33" selection-start-column="107" selection-end-line="33" selection-end-column="107" />
+        <state relative-caret-position="209">
+          <caret line="32" column="70" lean-forward="true" selection-start-line="32" selection-start-column="70" selection-end-line="32" selection-end-column="70" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/simulation.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/simulation.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="393" column="39" lean-forward="true" selection-start-line="393" selection-start-column="39" selection-end-line="393" selection-end-column="39" />
+        <state relative-caret-position="165">
+          <caret line="690" column="1" lean-forward="true" selection-start-line="690" selection-start-column="1" selection-end-line="690" selection-end-column="1" />
           <folding>
             <element signature="e#143#4704#0" expanded="false" />
             <element signature="e#4705#12013#0" expanded="false" />
+            <element signature="e#12014#14915#0" expanded="false" />
+            <element signature="e#14916#15868#0" expanded="false" />
+            <element signature="e#15869#16851#0" expanded="false" />
+            <element signature="e#16852#29307#0" expanded="false" />
+            <element signature="e#29308#30759#0" expanded="false" />
+            <element signature="e#30760#32949#0" expanded="false" />
+            <element signature="e#32950#35138#0" expanded="false" />
+            <element signature="e#35139#36832#0" expanded="false" />
+            <element signature="e#36833#37105#0" expanded="false" />
           </folding>
         </state>
       </provider>
