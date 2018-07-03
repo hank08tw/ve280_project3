@@ -12,7 +12,6 @@
 #include <sstream>
 #include <cassert>
 int read_summaryfile_and_speciesfiles(world_t& theworld,const string& summary_file_name){
-    //cout << "1" << endl;
     ifstream iFile;
     iFile.open(summary_file_name);
     //if open creature summary file fails
@@ -34,14 +33,12 @@ int read_summaryfile_and_speciesfiles(world_t& theworld,const string& summary_fi
         }else break;
         tmp_species_name.clear();
     }
-
     //check whether the number of species exceeds the maximal number ok
     if(theworld.numSpecies==MAXSPECIES&&!tmp_species_name.empty()){
         cout << "Error: Too many species!" << endl;
         cout << "Maximal number of species is " << MAXSPECIES<< "." << endl;
         return -1;
     }
-
     iFile.close ();
     //read instructions for different species
     for(int i=0;i<theworld.numSpecies;i++){
@@ -146,7 +143,6 @@ int read_world_file(world_t& theworld,const string& world_file_name){
         cout << "Error: The grid height is illegal!" << endl;
         return -1;
     }
-
     theworld.grid.height=(unsigned int)height_num;
     getline(iFile2,width);
     istringstream istream2;
@@ -158,14 +154,6 @@ int read_world_file(world_t& theworld,const string& world_file_name){
         return -1;
     }
     theworld.grid.width=(unsigned int)width_num;
-
-    //initilize pointers in theworld.grid.squares
-    for(int i=0;i<theworld.grid.height;i++){
-        for(int j=0;j<theworld.grid.width;j++){
-            theworld.grid.squares[i][j]= nullptr;
-        }
-    }
-
     //read in terrain type for each square
     for(int i=0;i<height_num;i++){
         string line;
@@ -202,7 +190,6 @@ int read_world_file(world_t& theworld,const string& world_file_name){
             }
         }
     }
-
     //read in creature information
     theworld.numCreatures=0;
     string species_line;
@@ -231,7 +218,6 @@ int read_world_file(world_t& theworld,const string& world_file_name){
         string direction;
         istream3 >> direction;
         bool invalid_direction=true;
-
         //direction_num represents the direction
         int direction_num;
         for(direction_num=0;direction_num<DIRECT_SIZE;direction_num++){
@@ -249,21 +235,18 @@ int read_world_file(world_t& theworld,const string& world_file_name){
         int r,c;
         istream3 >> r;
         istream3 >> c;
-
         //check whether creature is out of boundary ok
         if(r>=theworld.grid.height||c>=theworld.grid.width){
             cout << "Error: Creature (" << species_name << " " << direction << " " << r << " " << c << ") is out of bound!" << endl;
             cout << "The grid size is " << theworld.grid.height << "-by-" << theworld.grid.width << "." << endl;
             return -1;
         }
-        //cout << "1" << endl;
         //check whether different creatures overlap together
-
         if(theworld.grid.squares[r][c]!= nullptr){
             cout << "Error: Creature (" << species_name << " " << direction << " " << r << " " << c <<") overlaps with creature ("<< theworld.grid.squares[r][c]->species->name << " " << directName[theworld.grid.squares[r][c]->direction] << " " << r << " " << c << ")!" << endl;
             return -1;
         }
-        //cout << "2" << endl;
+
         theworld.creatures[theworld.numCreatures].species=&theworld.species[species_num];
         theworld.creatures[theworld.numCreatures].location.r=r;
         theworld.creatures[theworld.numCreatures].location.c=c;
@@ -319,7 +302,6 @@ int read_world_file(world_t& theworld,const string& world_file_name){
         theworld.numCreatures++;
         species_line.clear();
     }
-
     if(theworld.numCreatures==MAXCREATURES&&!species_line.empty()){
         cout << "Error: Too many creatures!" << endl;
         cout << "Maximal number of creatures is " << MAXCREATURES << "." << endl;
@@ -471,6 +453,7 @@ int infect(world_t& theworld,int creature_num){
                             break;
                         }
                     }
+                    //thecreature.programID++;
                 }
                 break;
             case SOUTH:
@@ -485,6 +468,7 @@ int infect(world_t& theworld,int creature_num){
                             break;
                         }
                     }
+                    //thecreature.programID++;
                 }
                 break;
             case WEST:
@@ -499,6 +483,7 @@ int infect(world_t& theworld,int creature_num){
                             break;
                         }
                     }
+                    //thecreature.programID++;
                 }
                 break;
             case NORTH:
@@ -513,6 +498,7 @@ int infect(world_t& theworld,int creature_num){
                             break;
                         }
                     }
+                    //thecreature.programID++;
                 }
                 break;
             default:
@@ -523,7 +509,7 @@ int infect(world_t& theworld,int creature_num){
         int length=1;
         switch(thecreature.direction){
             case EAST:
-                while(thecreature.location.c+length<theworld.grid.width&&(theworld.grid.squares[thecreature.location.r][thecreature.location.c+length]==nullptr||theworld.grid.squares[thecreature.location.r][thecreature.location.c+length]->species==theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species)){
+                while(!(thecreature.location.c+length<theworld.grid.width&&theworld.grid.squares[thecreature.location.r][thecreature.location.c+length]!=nullptr&&theworld.grid.squares[thecreature.location.r][thecreature.location.c+length]->species!=theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species)){
                     length++;
                 }
                 if(thecreature.location.c+length<theworld.grid.width&&theworld.grid.squares[thecreature.location.r][thecreature.location.c+length]!=nullptr&&theworld.grid.squares[thecreature.location.r][thecreature.location.c+length]->species!=theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species){
@@ -537,10 +523,11 @@ int infect(world_t& theworld,int creature_num){
                             break;
                         }
                     }
+                    //thecreature.programID++;
                 }
                 break;
             case SOUTH:
-                while(thecreature.location.r+length<theworld.grid.height&&(theworld.grid.squares[thecreature.location.r+length][thecreature.location.c]==nullptr||theworld.grid.squares[thecreature.location.r+length][thecreature.location.c]->species==theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species)){
+                while(!(thecreature.location.r+length<theworld.grid.height&&theworld.grid.squares[thecreature.location.r+length][thecreature.location.c]!=nullptr&&theworld.grid.squares[thecreature.location.r+length][thecreature.location.c]->species!=theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species)){
                     length++;
                 }
                 if(thecreature.location.r+length<theworld.grid.height&&theworld.grid.squares[thecreature.location.r+length][thecreature.location.c]!=nullptr&&theworld.grid.squares[thecreature.location.r+length][thecreature.location.c]->species!=theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species){
@@ -554,10 +541,11 @@ int infect(world_t& theworld,int creature_num){
                             break;
                         }
                     }
+                    //thecreature.programID++;
                 }
                 break;
             case WEST:
-                while(thecreature.location.c-length>=0&&(theworld.grid.squares[thecreature.location.r][thecreature.location.c-length]==nullptr||theworld.grid.squares[thecreature.location.r][thecreature.location.c-length]->species==theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species)){
+                while(!(thecreature.location.c-length>=0&&theworld.grid.squares[thecreature.location.r][thecreature.location.c-length]!=nullptr&&theworld.grid.squares[thecreature.location.r][thecreature.location.c-length]->species!=theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species)){
                     length++;
                 }
                 if(thecreature.location.c-length>=0&&theworld.grid.squares[thecreature.location.r][thecreature.location.c-length]!=nullptr&&theworld.grid.squares[thecreature.location.r][thecreature.location.c-length]->species!=theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species){
@@ -571,10 +559,11 @@ int infect(world_t& theworld,int creature_num){
                             break;
                         }
                     }
+                    //thecreature.programID++;
                 }
                 break;
             case NORTH:
-                while(thecreature.location.r-length>=0&&(theworld.grid.squares[thecreature.location.r-length][thecreature.location.c]==nullptr||theworld.grid.squares[thecreature.location.r-length][thecreature.location.c]->species==theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species)){
+                while(!(thecreature.location.r-length>=0&&theworld.grid.squares[thecreature.location.r-length][thecreature.location.c]!=nullptr&&theworld.grid.squares[thecreature.location.r-length][thecreature.location.c]->species!=theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species)){
                     length++;
                 }
                 if(thecreature.location.r-length>=0&&theworld.grid.squares[thecreature.location.r-length][thecreature.location.c]!=nullptr&&theworld.grid.squares[thecreature.location.r-length][thecreature.location.c]->species!=theworld.grid.squares[thecreature.location.r][thecreature.location.c]->species){
@@ -588,11 +577,13 @@ int infect(world_t& theworld,int creature_num){
                             break;
                         }
                     }
+                    //thecreature.programID++;
                 }
                 break;
             default:
                 return -1;
         }
+
     }
     thecreature.programID++;
     if(thecreature.programID>thecreature.species->programSize)thecreature.programID=1;

@@ -1,0 +1,30 @@
+11
+11
+PPPHLLLHPPP
+PPPHLHLHPPP
+PPPHLLLHPPP
+HHHPFFFPHHH
+LLLFPPPFLLL
+LHLFPPPFLHL
+LLLFPPPFLLL
+HHHPFFFPHHH
+PPPHLLLHPPP
+PPPHLHLHPPP
+PPPHLLLHPPP
+food north 1 5 a
+food east 5 1 a
+food south 5 9 a
+food west 9 5 a 
+food north 5 5 a f
+attack north 0 0 a
+attack north 1 1 f
+attack north 2 2
+defend south 10 10
+defend south 9 9 a
+defend south 8 8 f
+cattack east 0 10
+cattack east 1 9 f
+cattack east 2 8 a
+cdefend west 10 0 a
+cdefend west 9 1 f
+cdefend west 8 2

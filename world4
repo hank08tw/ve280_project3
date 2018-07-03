@@ -1,0 +1,12 @@
+5
+5
+FFHHF
+HFHFH
+PHHFF
+LLHFF
+LLHFF
+flytrap east 1 1 f a
+landmine south 4 4 f
+food south 4 0 f
+lrover north 2 0 a
+hop west 0 3 a

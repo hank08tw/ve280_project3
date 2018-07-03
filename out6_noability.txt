@@ -1,0 +1,7 @@
+1
+Initial state
+at_n 
+Round 1
+Creature (attack north 0 0) takes action: right
+at_e 
+Round 2

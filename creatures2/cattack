@@ -1,0 +1,20 @@
+ifenemy 7
+ifwall 16
+ifsame 16
+ifempty 9
+infect
+right
+infect
+go 1
+hop
+go 1
+ifenemy 17
+ifwall 6
+ifsame 6
+ifempty 19
+infect
+left
+infect
+go 11
+hop
+go 11

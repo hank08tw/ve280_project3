@@ -1,0 +1,10 @@
+ifenemy 7
+ifwall 6
+ifsame 6
+ifempty 9
+infect
+right
+infect
+go 1
+hop
+go 1
