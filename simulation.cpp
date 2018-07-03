@@ -766,7 +766,7 @@ void print_all(world_t& theworld, int round_num,bool print_normal){
     //print out the answer
     cout << "Initial state" << endl;
     print_terrain (theworld);
-    for(int round=1;round<=round_num;round++){
+    for(int round=1;round <= round_num;round++){
         cout << "Round " << round << endl;
         //for each round, creature behaves one by one
         for(int creature=0;creature<theworld.numCreatures;creature++){
@@ -778,8 +778,12 @@ void print_all(world_t& theworld, int round_num,bool print_normal){
             int last_c=theworld.creatures[creature].location.c;
             //if the instruction is IFEMPTY,IFENEMY,IFSAME,IFWALL,GO, thecreature keeps acting unless they are in hillINactive state
             bool keep=true;
-            //only verbose printing should
-            if(!print_normal){
+            //verbose printing only print when thecreature hillactive is true
+            bool printverbose=false;
+            if(!print_normal&&theworld.creatures[creature].hillActive){
+                printverbose=true;
+            }
+            if(printverbose){
                 cout << "Creature (" << theworld.creatures[creature].species->name << " " << directName[(int)theworld.creatures[creature].direction] << " " << theworld.creatures[creature].location.r  << " " << theworld.creatures[creature].location.c << ") takes action:" << endl;
             }
             //keep acting unless they act HOP LEFT RIGHT INFECT or in hillINactive state
@@ -787,71 +791,71 @@ void print_all(world_t& theworld, int round_num,bool print_normal){
                 switch (int(theworld.creatures[creature].species->program[theworld.creatures[creature].programID - 1].op)) {
                     case HOP:
                         //only verbose printing should print out details
-                        if(!print_normal){
+                        if(printverbose){
                             cout << "Instruction " << theworld.creatures[creature].programID << ": " << opName[HOP] << endl;
                         }
                         last_program_id=hop (theworld, creature);
                         keep=false;
                         break;
                     case LEFT:
-                        if(!print_normal){
+                        if(printverbose){
                             cout << "Instruction " << theworld.creatures[creature].programID << ": " << opName[LEFT] << endl;
                         }
                         last_program_id=turn_left (theworld, creature);
                         keep=false;
                         break;
                     case RIGHT:
-                        if(!print_normal){
+                        if(printverbose){
                             cout << "Instruction " << theworld.creatures[creature].programID << ": " << opName[RIGHT] << endl;
                         }
                         last_program_id=turn_right (theworld, creature);
                         keep=false;
                         break;
                     case INFECT:
-                        if(!print_normal){
+                        if(printverbose){
                             cout << "Instruction " << theworld.creatures[creature].programID << ": " << opName[INFECT] << endl;
                         }
                         last_program_id=infect (theworld, creature);
                         keep=false;
                         break;
                     case IFEMPTY:
-                        if(!print_normal){
+                        if(printverbose){
                             cout << "Instruction " << theworld.creatures[creature].programID << ": " << opName[IFEMPTY] << " " << theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address << endl;
                         }
                         if(ifempty (theworld, theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address, creature))keep=false;
                         break;
                     case IFENEMY:
-                        if(!print_normal){
+                        if(printverbose){
                             cout << "Instruction " << theworld.creatures[creature].programID << ": " << opName[IFENEMY] << " " << theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address << endl;
                         }
                         if(ifenemy (theworld, theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address, creature))keep=false;
                         break;
                     case IFSAME:
-                        if(!print_normal){
+                        if(printverbose){
                             cout << "Instruction " << theworld.creatures[creature].programID << ": " << opName[IFSAME] << " " << theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address << endl;
                         }
                         if(ifsame (theworld, theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address, creature))keep=false;
                         break;
                     case IFWALL:
-                        if(!print_normal){
+                        if(printverbose){
                             cout << "Instruction " << theworld.creatures[creature].programID << ": " << opName[IFWALL] << " " << theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address << endl;
                         }
                         if(ifwall (theworld, theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address, creature))keep=false;
                         break;
                     case GO:
-                        if(!print_normal){
+                        if(printverbose){
                             cout << "Instruction " << theworld.creatures[creature].programID << ": " << opName[GO] << " " << theworld.creatures[creature].species->program[theworld.creatures[creature].programID-1].address << endl;
                         }
                         if(go(theworld,theworld.creatures[creature].species->program[ theworld.creatures[creature].programID-1].address, creature))keep=false;
                         break;
                 }
             }
-            //print out for concise-printing,
+            //print out for concise-printing
             if(print_normal&&last_program_id!=-1&&0<=int(theworld.creatures[creature].species->program[last_program_id - 1].op)&&int(theworld.creatures[creature].species->program[last_program_id - 1].op)<=3&&(theworld.grid.terrain[theworld.creatures[creature].location.r][theworld.creatures[creature].location.c]!=HILL||theworld.creatures[creature].ability[FLY]||(!theworld.creatures[creature].hillActive))){
                 cout << "Creature (" << last_species_name << " " << directName[last_direction] << " " << last_r << " " << last_c << ") takes action: " << opName[int(theworld.creatures[creature].species->program[last_program_id -1].op)] << endl;
             }
             //print out for verbose-printing
-            if(!print_normal){
+            if(printverbose){
                 print_terrain (theworld);
             }
         }

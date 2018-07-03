@@ -12,18 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07f05e52-5352-4335-ad28-d5f86d4ab16c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ve280_project3.dir/p3.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ve280_project3.dir/p3.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ve280_project3.dir/simulation.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ve280_project3.dir/simulation.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/ve280_project3" afterPath="$PROJECT_DIR$/cmake-build-debug/ve280_project3" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out6_noability.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/p3" afterPath="$PROJECT_DIR$/p3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/p3.o" afterPath="$PROJECT_DIR$/p3.o" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulation.o" afterPath="$PROJECT_DIR$/simulation.o" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ve280_project3.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ve280_project3.dir/CXX.includecache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/p3.cpp" afterPath="$PROJECT_DIR$/p3.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creatures/flytrap" afterPath="$PROJECT_DIR$/creatures/flytrap" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creatures/hop" afterPath="$PROJECT_DIR$/creatures/hop" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out_v.txt" afterPath="$PROJECT_DIR$/out_v.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulation.cpp" afterPath="$PROJECT_DIR$/simulation.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulation.h" afterPath="$PROJECT_DIR$/simulation.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/world_type.h" afterPath="$PROJECT_DIR$/world_type.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,10 +54,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="p3.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="p3.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/p3.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="24">
               <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -70,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="simulation.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="simulation.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simulation.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="451" column="46" lean-forward="false" selection-start-line="451" selection-start-column="46" selection-end-line="451" selection-end-column="46" />
+            <state relative-caret-position="672">
+              <caret line="787" column="13" lean-forward="true" selection-start-line="787" selection-start-column="13" selection-end-line="787" selection-end-column="13" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
                 <element signature="e#262#4951#0" expanded="false" />
@@ -89,7 +85,6 @@
                 <element signature="e#37375#39427#0" expanded="false" />
                 <element signature="e#39428#39833#0" expanded="false" />
                 <element signature="e#39834#40341#0" expanded="false" />
-                <element signature="e#40342#47170#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -128,8 +123,8 @@
       <file leaf-file-name="flytrap" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/creatures/flytrap">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+            <state relative-caret-position="28">
+              <caret line="6" column="60" lean-forward="false" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -138,8 +133,8 @@
       <file leaf-file-name="hop" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/creatures/hop">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+            <state relative-caret-position="28">
+              <caret line="3" column="51" lean-forward="false" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -258,12 +253,12 @@
       <workItem from="1530063976679" duration="1770000" />
       <workItem from="1530091946085" duration="3990000" />
       <workItem from="1530166067983" duration="126000" />
-      <workItem from="1530167184370" duration="86878000" />
+      <workItem from="1530167184370" duration="89122000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130317000" />
+    <option name="totallyTimeSpent" value="132561000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -351,7 +346,6 @@
             <element signature="e#37375#39427#0" expanded="false" />
             <element signature="e#39428#39833#0" expanded="false" />
             <element signature="e#39834#40341#0" expanded="false" />
-            <element signature="e#40342#47170#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -432,7 +426,6 @@
             <element signature="e#37375#39427#0" expanded="false" />
             <element signature="e#39428#39833#0" expanded="false" />
             <element signature="e#39834#40341#0" expanded="false" />
-            <element signature="e#40342#47170#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -675,8 +668,8 @@
     <entry file="file://$PROJECT_DIR$/main.cpp" />
     <entry file="file://$PROJECT_DIR$/creatures/flytrap">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        <state relative-caret-position="28">
+          <caret line="6" column="60" lean-forward="false" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -691,8 +684,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/creatures/hop">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        <state relative-caret-position="28">
+          <caret line="3" column="51" lean-forward="false" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -713,14 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulation.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/world_type.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -729,10 +714,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/p3.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulation.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/simulation.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="451" column="46" lean-forward="false" selection-start-line="451" selection-start-column="46" selection-end-line="451" selection-end-column="46" />
+        <state relative-caret-position="672">
+          <caret line="787" column="13" lean-forward="true" selection-start-line="787" selection-start-column="13" selection-end-line="787" selection-end-column="13" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
             <element signature="e#262#4951#0" expanded="false" />
@@ -747,17 +750,6 @@
             <element signature="e#37375#39427#0" expanded="false" />
             <element signature="e#39428#39833#0" expanded="false" />
             <element signature="e#39834#40341#0" expanded="false" />
-            <element signature="e#40342#47170#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/p3.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
