@@ -15,8 +15,10 @@ int main(int argc,char* argv[]){
         cout << "Usage: ./p3 <species-summary> <world-file> <rounds> [v|verbose]" << endl;
         return 0;
     }
+
     //check whether it is normal printing or verbose printing
     bool print_normal=true;
+
     if(argc>=5){
         if(strcmp(argv[4],"v")||strcmp(argv[4],"verbose")){
             print_normal=false;

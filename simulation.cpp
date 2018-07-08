@@ -5,14 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <cassert>
-#include "world_type.h"
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <cassert>
 int read_summaryfile_and_speciesfiles(world_t& theworld,const string& summary_file_name){
-    //cout << "1" << endl;
     ifstream iFile;
     iFile.open(summary_file_name);
     //if open creature summary file fails
@@ -23,14 +16,12 @@ int read_summaryfile_and_speciesfiles(world_t& theworld,const string& summary_fi
     //store creature directory name
     string directory_name;
     getline(iFile,directory_name);
-    //cout << "directory_name: " << directory_name << endl;
     //store species name
     theworld.numSpecies=0;
     string tmp_species_name;
     while(getline(iFile,tmp_species_name)){
         if(!tmp_species_name.empty()&&theworld.numSpecies<MAXSPECIES){
             theworld.species[theworld.numSpecies++].name=tmp_species_name;
-            //cout << "species name: "<< theworld.species[theworld.numSpecies-1].name << endl;
         }else break;
         tmp_species_name.clear();
     }
@@ -202,7 +193,6 @@ int read_world_file(world_t& theworld,const string& world_file_name){
             }
         }
     }
-
     //read in creature information
     theworld.numCreatures=0;
     string species_line;
@@ -231,7 +221,6 @@ int read_world_file(world_t& theworld,const string& world_file_name){
         string direction;
         istream3 >> direction;
         bool invalid_direction=true;
-
         //direction_num represents the direction
         int direction_num;
         for(direction_num=0;direction_num<DIRECT_SIZE;direction_num++){
@@ -245,25 +234,20 @@ int read_world_file(world_t& theworld,const string& world_file_name){
             cout << "Error: Direction " << direction << " is not recognized!" << endl;
             return -1;
         }
-
         int r,c;
         istream3 >> r;
         istream3 >> c;
-
         //check whether creature is out of boundary ok
         if(r>=theworld.grid.height||c>=theworld.grid.width){
             cout << "Error: Creature (" << species_name << " " << direction << " " << r << " " << c << ") is out of bound!" << endl;
             cout << "The grid size is " << theworld.grid.height << "-by-" << theworld.grid.width << "." << endl;
             return -1;
         }
-        //cout << "1" << endl;
         //check whether different creatures overlap together
-
         if(theworld.grid.squares[r][c]!= nullptr){
             cout << "Error: Creature (" << species_name << " " << direction << " " << r << " " << c <<") overlaps with creature ("<< theworld.grid.squares[r][c]->species->name << " " << directName[theworld.grid.squares[r][c]->direction] << " " << r << " " << c << ")!" << endl;
             return -1;
         }
-        //cout << "2" << endl;
         theworld.creatures[theworld.numCreatures].species=&theworld.species[species_num];
         theworld.creatures[theworld.numCreatures].location.r=r;
         theworld.creatures[theworld.numCreatures].location.c=c;
@@ -287,7 +271,6 @@ int read_world_file(world_t& theworld,const string& world_file_name){
         //handle creature's abilities
         theworld.creatures[theworld.numCreatures].ability[ARCH]=false;
         theworld.creatures[theworld.numCreatures].ability[FLY]=false;
-
         string ability;
         while(!istream3.eof()){
             istream3 >> ability;
@@ -342,9 +325,7 @@ int hop(world_t& theworld,int creature_num){
                 theworld.grid.squares[thecreature.location.r][thecreature.location.c+1]=&thecreature;
                 theworld.grid.squares[thecreature.location.r][thecreature.location.c]=nullptr;
                 thecreature.location.c+=1;
-
             }
-            //thecreature.programID++;
             break;
         case SOUTH:
             if(thecreature.location.r+1<theworld.grid.height&&!(!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r+1][thecreature.location.c]==LAKE)&&theworld.grid.squares[thecreature.location.r+1][thecreature.location.c]==nullptr){
@@ -352,28 +333,21 @@ int hop(world_t& theworld,int creature_num){
                 theworld.grid.squares[thecreature.location.r+1][thecreature.location.c]=&thecreature;
                 theworld.grid.squares[thecreature.location.r][thecreature.location.c]=nullptr;
                 thecreature.location.r+=1;
-                //thecreature.programID++;
             }
-            //thecreature.programID++;
             break;
         case WEST:
             if(thecreature.location.c-1>=0&&!(!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c-1]==LAKE)&&theworld.grid.squares[thecreature.location.r][thecreature.location.c-1]==nullptr){
-
                 theworld.grid.squares[thecreature.location.r][thecreature.location.c-1]=&thecreature;
                 theworld.grid.squares[thecreature.location.r][thecreature.location.c]=nullptr;
                 thecreature.location.c-=1;
-                //thecreature.programID++;
             }
-            //thecreature.programID++;
             break;
         case NORTH:
             if(thecreature.location.r-1>=0&&!(!thecreature.ability[FLY]&&theworld.grid.terrain[thecreature.location.r-1][thecreature.location.c]==LAKE)&&theworld.grid.squares[thecreature.location.r-1][thecreature.location.c]==nullptr){
                 theworld.grid.squares[thecreature.location.r-1][thecreature.location.c]=&thecreature;
                 theworld.grid.squares[thecreature.location.r][thecreature.location.c]=nullptr;
                 thecreature.location.r-=1;
-                //thecreature.programID++;
             }
-            //thecreature.programID++;
             break;
         default:
             return -1;
@@ -672,29 +646,24 @@ bool ifsame(world_t& theworld,int n,int creature_num){
         thecreature.hillActive=true;
         return true;
     }
-    //cout << thecreature.species->name << endl;
     switch(int(thecreature.direction)){
         case EAST:
             if(thecreature.location.c+1<theworld.grid.width&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c+1]!=FOREST&&theworld.grid.squares[thecreature.location.r][thecreature.location.c+1]!=nullptr&&theworld.grid.squares[thecreature.location.r][thecreature.location.c+1]->species==thecreature.species){
                 thecreature.programID=(unsigned int)n;
-                //cout << "eeast" << endl;
             }else thecreature.programID++;
             break;
         case SOUTH:
             if(thecreature.location.r+1<theworld.grid.height&&theworld.grid.terrain[thecreature.location.r+1][thecreature.location.c]!=FOREST&&theworld.grid.squares[thecreature.location.r+1][thecreature.location.c]!=nullptr&&theworld.grid.squares[thecreature.location.r+1][thecreature.location.c]->species==thecreature.species){
                 thecreature.programID=(unsigned int)n;
-                //cout << "ssame" << endl;
             }else thecreature.programID++;
             break;
         case WEST:
             if(thecreature.location.c-1>=0&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c-1]!=FOREST&&theworld.grid.squares[thecreature.location.r][thecreature.location.c-1]!=nullptr&&theworld.grid.squares[thecreature.location.r][thecreature.location.c-1]->species==thecreature.species){
                 thecreature.programID=(unsigned int)n;
-                //cout << "wsame" << endl;
             }else thecreature.programID++;
             break;
         case NORTH:
             if(thecreature.location.r-1>=0&&theworld.grid.terrain[thecreature.location.r-1][thecreature.location.c]!=FOREST&&theworld.grid.squares[thecreature.location.r-1][thecreature.location.c]!=nullptr&&theworld.grid.squares[thecreature.location.r-1][thecreature.location.c]->species==thecreature.species){
-                //cout << "nsame" << endl;
                 thecreature.programID=(unsigned int)n;
             }else thecreature.programID++;
             break;
@@ -709,30 +678,25 @@ bool ifwall(world_t& theworld,int n,int creature_num){
         thecreature.hillActive=true;
         return true;
     }
-    //cout << thecreature.species->name << endl;
     switch(int(thecreature.direction)){
         case EAST:
             if(thecreature.location.c+1==theworld.grid.width||(thecreature.location.c<theworld.grid.width&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c+1]==LAKE&&!thecreature.ability[FLY])){
                 thecreature.programID=(unsigned int)n;
-                //cout << "ewall" << endl;
             }else thecreature.programID++;
             break;
         case SOUTH:
             if(thecreature.location.r+1==theworld.grid.height||(thecreature.location.r<theworld.grid.height&&theworld.grid.terrain[thecreature.location.r+1][thecreature.location.c]==LAKE&&!thecreature.ability[FLY])){
                 thecreature.programID=(unsigned int)n;
-                //cout << "swall" << endl;
             }else thecreature.programID++;
             break;
         case WEST:
             if(thecreature.location.c==0||(thecreature.location.c>0&&theworld.grid.terrain[thecreature.location.r][thecreature.location.c-1]==LAKE&&!thecreature.ability[FLY])){
                 thecreature.programID=(unsigned int)n;
-                //cout << "wwall" << endl;
             }else thecreature.programID++;
             break;
         case NORTH:
             if(thecreature.location.r==0||(thecreature.location.r>0&&theworld.grid.terrain[thecreature.location.r-1][thecreature.location.c]==LAKE&&!thecreature.ability[FLY])){
                 thecreature.programID=(unsigned int)n;
-                //cout << "nwall" << endl;
             }else thecreature.programID++;
             break;
     }
